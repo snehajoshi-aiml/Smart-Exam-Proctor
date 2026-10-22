@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "installCommand": "npm install --legacy-peer-deps && cd frontend && npm install --legacy-peer-deps",
+  "buildCommand": "cd frontend && npm run build",
+  "outputDirectory": "frontend/build",
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://athena-proctor-8.onrender.com/api/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

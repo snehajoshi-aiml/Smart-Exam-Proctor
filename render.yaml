@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: smart-exam-proctoring-backend
+    env: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install --omit=dev
+    startCommand: node --max-old-space-size=256 --optimize_for_size --expose-gc server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_OPTIONS
+        value: --max-old-space-size=256 --optimize_for_size --expose-gc
+      - key: MALLOC_ARENA_MAX
+        value: "2"
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: CLIENT_URL
+        sync: false
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_APP_PASSWORD
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: BREVO_API_KEY
+        sync: false
+      - key: SENDGRID_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+      - key: ARCFACE_API_KEY
+        sync: false
+      - key: PYTHON_DETECTOR_URL
+        sync: false

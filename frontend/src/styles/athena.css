@@ -1,0 +1,568 @@
+/* Athena AI Smart Proctoring System - Stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --athena-bg: #030614;
+  --athena-card-bg: rgba(15, 23, 42, 0.85);
+  --athena-card-solid: #0f172a;
+  --athena-card-border: rgba(99, 102, 241, 0.25);
+  --athena-primary: #4f46e5;
+  --athena-primary-hover: #4338ca;
+  --athena-secondary: #7c3aed;
+  --athena-success: #10b981;
+  --athena-warning: #f59e0b;
+  --athena-danger: #ef4444;
+  --athena-text-main: #f8fafc;
+  --athena-text-muted: #94a3b8;
+  --athena-glow-primary: rgba(79, 70, 229, 0.4);
+  --athena-glow-danger: rgba(239, 68, 68, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html, #root {
+  height: 100%;
+  width: 100%;
+  background-color: var(--athena-bg);
+  color: var(--athena-text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Athena Layout Container */
+.athena-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: radial-gradient(circle at 10% 20%, #0b1120 0%, #030614 90%);
+}
+
+/* Top Header */
+.athena-header {
+  height: 64px;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--athena-card-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.athena-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.athena-brand-logo {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, var(--athena-primary), var(--athena-secondary));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 16px var(--athena-glow-primary);
+  color: white;
+  font-size: 1.2rem;
+}
+
+.athena-brand-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  background: linear-gradient(120deg, #c084fc, #60a5fa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.02em;
+}
+
+.athena-student-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 6px 16px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.85rem;
+}
+
+.athena-timer-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #0f172a;
+  padding: 6px 18px;
+  border-radius: 30px;
+  border: 1px solid var(--athena-primary);
+  box-shadow: 0 0 12px rgba(79, 70, 229, 0.25);
+}
+
+.athena-timer-digit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #60a5fa;
+}
+
+.athena-timer-digit.warning {
+  color: var(--athena-warning);
+}
+
+.athena-timer-digit.danger {
+  color: var(--athena-danger);
+  animation: pulse-red 1s infinite;
+}
+
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Dashboard Panels Layout */
+.athena-dashboard-grid {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  gap: 20px;
+  padding: 20px 24px;
+  flex: 1;
+}
+
+/* Left Panel - Exam Workspace */
+.athena-left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Section Navigation Tabs */
+.athena-nav-tabs {
+  display: flex;
+  gap: 12px;
+  background: var(--athena-card-bg);
+  backdrop-filter: blur(16px);
+  padding: 8px;
+  border-radius: 16px;
+  border: 1px solid var(--athena-card-border);
+}
+
+.athena-nav-tab {
+  flex: 1;
+  padding: 12px 18px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  color: var(--athena-text-muted);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+.athena-nav-tab:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+.athena-nav-tab.active {
+  background: linear-gradient(135deg, var(--athena-primary), var(--athena-secondary));
+  color: #ffffff;
+  box-shadow: 0 4px 15px var(--athena-glow-primary);
+}
+
+/* Left Panel Card Container */
+.athena-workspace-card {
+  background: var(--athena-card-bg);
+  backdrop-filter: blur(16px);
+  border-radius: 20px;
+  border: 1px solid var(--athena-card-border);
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* MCQ Options Styling */
+.athena-mcq-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.athena-mcq-option:hover {
+  border-color: #4f46e5;
+  background: #1e293b;
+}
+
+.athena-mcq-option.selected {
+  border-color: var(--athena-primary);
+  background: rgba(79, 70, 229, 0.15);
+  box-shadow: 0 0 12px rgba(79, 70, 229, 0.3);
+}
+
+.athena-option-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #1e293b;
+  color: var(--athena-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.athena-mcq-option.selected .athena-option-badge {
+  background: var(--athena-primary);
+  color: white;
+}
+
+/* Question Palette / Navigator Grid */
+.athena-palette-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.athena-palette-btn {
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: var(--athena-text-main);
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.athena-palette-btn.current {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 2px #60a5fa;
+}
+
+.athena-palette-btn.answered {
+  background: #064e3b;
+  border-color: var(--athena-success);
+  color: #a7f3d0;
+}
+
+.athena-palette-btn.review {
+  background: #4c1d95;
+  border-color: var(--athena-secondary);
+  color: #ddd6fe;
+}
+
+/* LeetCode Style Coding Section Split */
+.athena-coding-split {
+  display: grid;
+  grid-template-columns: 42% 58%;
+  gap: 18px;
+  flex: 1;
+  min-height: 480px;
+}
+
+.athena-coding-problem-pane {
+  background: #090d1a;
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  padding: 18px;
+  overflow-y: auto;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.athena-code-editor-pane {
+  display: flex;
+  flex-direction: column;
+  background: #090d1a;
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.athena-editor-toolbar {
+  background: #0f172a;
+  padding: 10px 16px;
+  border-bottom: 1px solid #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.athena-code-textarea {
+  flex: 1;
+  background: #050811;
+  border: none;
+  color: #e2e8f0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13.5px;
+  padding: 16px;
+  line-height: 1.6;
+  outline: none;
+  resize: none;
+}
+
+.athena-console-panel {
+  background: #0a0f1d;
+  border-top: 1px solid #1e293b;
+  padding: 12px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+/* Right Panel - AI Monitoring Sidebar */
+.athena-right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.athena-sidebar-card {
+  background: var(--athena-card-bg);
+  backdrop-filter: blur(16px);
+  border-radius: 20px;
+  border: 1px solid var(--athena-card-border);
+  padding: 18px;
+}
+
+/* Video Webcam Frame */
+.athena-webcam-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #000;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 2px solid var(--athena-primary);
+  box-shadow: 0 0 16px var(--athena-glow-primary);
+}
+
+.athena-webcam-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--athena-success);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.athena-live-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--athena-danger);
+  border-radius: 50%;
+  animation: pulse-red 1s infinite;
+}
+
+/* Audio Wave Visualizer */
+.athena-audio-wave-box {
+  background: #0f172a;
+  border-radius: 14px;
+  padding: 12px 16px;
+  border: 1px solid #1e293b;
+  margin-top: 12px;
+}
+
+.athena-wave-bars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  margin-top: 8px;
+}
+
+.athena-wave-bar {
+  flex: 1;
+  background: linear-gradient(180deg, var(--athena-success), #059669);
+  border-radius: 4px;
+  min-height: 4px;
+  transition: height 0.15s ease;
+}
+
+/* Status Indicator Badges */
+.athena-status-card {
+  background: #0f172a;
+  border-radius: 14px;
+  padding: 12px 16px;
+  border: 1px solid #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
+}
+
+.athena-status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.athena-status-badge.green {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid #10b981;
+}
+
+.athena-status-badge.orange {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid #f59e0b;
+}
+
+.athena-status-badge.red {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border: 1px solid #ef4444;
+  animation: pulse-red 1s infinite;
+}
+
+/* Critical Alert Box */
+.athena-critical-alert {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(185, 28, 28, 0.35));
+  border: 2px solid var(--athena-danger);
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  color: #fecaca;
+  box-shadow: 0 0 20px var(--athena-glow-danger);
+  margin-bottom: 14px;
+  animation: alert-pulse 1.5s infinite alternate;
+}
+
+@keyframes alert-pulse {
+  from { box-shadow: 0 0 12px var(--athena-glow-danger); }
+  to { box-shadow: 0 0 24px rgba(239, 68, 68, 0.8); }
+}
+
+/* Activity Terminal Log Panel */
+.athena-log-panel {
+  background: #030712;
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  padding: 12px;
+  max-height: 180px;
+  overflow-y: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+}
+
+.athena-log-item {
+  margin-bottom: 6px;
+  line-height: 1.4;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.athena-log-time {
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Fullscreen Permission Overlay Modal */
+.athena-blocker-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(3, 6, 20, 0.95);
+  backdrop-filter: blur(20px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.athena-blocker-card {
+  max-width: 520px;
+  width: 100%;
+  background: #0f172a;
+  border: 1px solid var(--athena-primary);
+  border-radius: 24px;
+  padding: 36px 32px;
+  text-align: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .athena-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .athena-coding-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .athena-header {
+    padding: 0 14px;
+  }
+
+  .athena-student-info {
+    display: none;
+  }
+
+  .athena-nav-tabs {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,976 @@
+/* Athena Proctor - Animated Modern Login Stylesheet */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --athena-purple: #7c3aed;
+  --athena-purple-light: #8b5cf6;
+  --athena-purple-dark: #6d28d9;
+  --athena-indigo: #6366f1;
+  --athena-indigo-dark: #4f46e5;
+  --athena-navy-deep: #0a0f1d;
+  --athena-navy-card: #0f172a;
+  --athena-text-dark: #0f172a;
+  --athena-text-muted: #64748b;
+  --athena-bg-gradient: linear-gradient(135deg, #f8faff 0%, #f1f0fd 45%, #e8e6fb 100%);
+  --athena-card-bg: rgba(255, 255, 255, 0.94);
+  --athena-card-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.12), 0 10px 25px -5px rgba(0, 0, 0, 0.04);
+  --athena-success: #10b981;
+  --athena-border: rgba(124, 58, 237, 0.15);
+}
+
+.athena-login-page {
+  min-height: 100vh;
+  width: 100%;
+  background: var(--athena-bg-gradient);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--athena-text-dark);
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Ambient Animated Glowing Background Elements */
+.athena-ambient-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+  animation: floatOrb 14s ease-in-out infinite alternate;
+}
+
+.orb-1 {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.45) 0%, rgba(139, 92, 246, 0) 70%);
+  top: -80px;
+  left: -100px;
+  animation-duration: 16s;
+}
+
+.orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(192, 132, 252, 0.35) 0%, rgba(99, 102, 241, 0) 70%);
+  bottom: 80px;
+  right: -120px;
+  animation-duration: 20s;
+  animation-delay: -5s;
+}
+
+.orb-3 {
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(129, 140, 248, 0.35) 0%, rgba(124, 58, 237, 0) 70%);
+  top: 40%;
+  left: 30%;
+  animation-duration: 18s;
+  animation-delay: -8s;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 30px) scale(1.08); }
+  100% { transform: translate(-30px, -20px) scale(0.95); }
+}
+
+/* Background Animated Flowing Waves SVG */
+.ambient-wave-svg {
+  position: absolute;
+  top: 15%;
+  left: -5%;
+  width: 60%;
+  height: auto;
+  opacity: 0.28;
+  pointer-events: none;
+  animation: wavePulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes wavePulse {
+  0% { transform: translateY(0) scale(1); opacity: 0.22; }
+  100% { transform: translateY(-15px) scale(1.03); opacity: 0.34; }
+}
+
+/* Main Hero Grid Layout */
+.athena-login-main {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 36px 32px 24px;
+  display: grid;
+  grid-template-columns: 1.15fr 0.88fr;
+  gap: 48px;
+  align-items: center;
+  flex: 1;
+}
+
+/* LEFT SIDE STYLING */
+.athena-left-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: fadeInLeft 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.athena-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.08);
+  width: fit-content;
+  margin-bottom: 20px;
+}
+
+.brand-icon-box {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--athena-purple), var(--athena-indigo));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
+}
+
+.brand-badge-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--athena-navy-deep);
+  text-transform: uppercase;
+}
+
+.athena-hero-title {
+  font-size: 2.85rem;
+  font-weight: 800;
+  line-height: 1.18;
+  color: #0b1329;
+  letter-spacing: -0.025em;
+  margin-bottom: 14px;
+}
+
+.athena-hero-title .highlight-text {
+  background: linear-gradient(135deg, #7c3aed 10%, #6366f1 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  position: relative;
+}
+
+.athena-hero-title .highlight-text::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(124, 58, 237, 0.3), rgba(99, 102, 241, 0.1));
+  border-radius: 2px;
+}
+
+.athena-hero-subtitle {
+  font-size: 1.05rem;
+  color: #475569;
+  font-weight: 500;
+  line-height: 1.55;
+  margin-bottom: 28px;
+  max-width: 540px;
+}
+
+/* Proctoring Stage / Visual Scene */
+.athena-visual-stage {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  margin-top: 8px;
+}
+
+/* 3D Floating Laptop Simulation */
+.laptop-mockup-wrapper {
+  position: relative;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(124, 58, 237, 0.18);
+  box-shadow: 0 25px 60px -15px rgba(99, 102, 241, 0.18), 0 10px 20px -5px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  backdrop-filter: blur(16px);
+  animation: floatLaptop 6s ease-in-out infinite alternate;
+}
+
+@keyframes floatLaptop {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-10px); }
+}
+
+.laptop-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 12px;
+}
+
+.laptop-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+.dot-red { background: #ef4444; }
+.dot-yellow { background: #f59e0b; }
+.dot-green { background: #10b981; }
+
+.laptop-screen-content {
+  position: relative;
+  background: #0f172a;
+  border-radius: 14px;
+  height: 250px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Realistic Exam Video & Face Detection Overlay */
+.screen-bg-grid {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15) 0%, rgba(15, 23, 42, 0.95) 80%),
+              repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(255, 255, 255, 0.03) 20px),
+              repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(255, 255, 255, 0.03) 20px);
+}
+
+.face-mesh-container {
+  position: relative;
+  width: 140px;
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.face-avatar-img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(167, 139, 250, 0.5);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+}
+
+/* Glowing Scanning Laser Line */
+.face-laser-scanner {
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 120%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #34d399, #60a5fa, transparent);
+  box-shadow: 0 0 14px #34d399, 0 0 20px rgba(52, 211, 153, 0.8);
+  animation: laserScan 2.4s ease-in-out infinite alternate;
+  z-index: 4;
+}
+
+@keyframes laserScan {
+  0% { top: 5%; opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { top: 92%; opacity: 0.4; }
+}
+
+/* AI Target Box Reticle with 4 Glowing Corners */
+.ai-target-box {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: #38bdf8;
+  border-style: solid;
+}
+.corner-tl { top: 0; left: 0; border-width: 3px 0 0 3px; border-top-left-radius: 6px; }
+.corner-tr { top: 0; right: 0; border-width: 3px 3px 0 0; border-top-right-radius: 6px; }
+.corner-bl { bottom: 0; left: 0; border-width: 0 0 3px 3px; border-bottom-left-radius: 6px; }
+.corner-br { bottom: 0; right: 0; border-width: 0 3px 3px 0; border-bottom-right-radius: 6px; }
+
+/* Status Badges on Screen */
+.ai-verified-pill {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(16, 185, 129, 0.18);
+  border: 1px solid #10b981;
+  color: #34d399;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
+  animation: pulseGreen 2s infinite;
+  z-index: 5;
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+@keyframes pulseGreen {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.04); opacity: 0.88; }
+}
+
+.ai-hud-live-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(239, 68, 68, 0.18);
+  border: 1px solid #ef4444;
+  color: #f87171;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ai-hud-stats-bar {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.74rem;
+  color: #94a3b8;
+  font-family: 'JetBrains Mono', monospace;
+  background: rgba(15, 23, 42, 0.75);
+  padding: 6px 12px;
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Floating Security Shield Badge */
+.floating-shield-badge {
+  position: absolute;
+  top: -18px;
+  left: -24px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 14px 30px rgba(124, 58, 237, 0.18), 0 4px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  animation: floatSlow 5s ease-in-out infinite alternate;
+  z-index: 10;
+}
+
+.shield-icon-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.05rem;
+  box-shadow: 0 0 14px rgba(124, 58, 237, 0.4);
+}
+
+.shield-text-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.shield-title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.shield-subtitle {
+  font-size: 0.68rem;
+  color: #7c3aed;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Floating Exam Rules Card */
+.floating-rules-card {
+  position: absolute;
+  bottom: -24px;
+  right: -28px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  border-radius: 16px;
+  padding: 14px 18px;
+  box-shadow: 0 16px 35px rgba(99, 102, 241, 0.16), 0 4px 10px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(124, 58, 237, 0.22);
+  width: 220px;
+  animation: floatReverse 6s ease-in-out infinite alternate;
+  z-index: 10;
+}
+
+.rules-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.rules-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.rules-list li {
+  font-size: 0.73rem;
+  color: #475569;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.rules-list li i {
+  color: #7c3aed;
+  font-size: 0.7rem;
+}
+
+@keyframes floatSlow {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-12px) rotate(1deg); }
+}
+
+@keyframes floatReverse {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(10px) rotate(-1deg); }
+}
+
+/* RIGHT SIDE (LOGIN CARD) */
+.athena-right-col {
+  display: flex;
+  justify-content: center;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.athena-login-card {
+  background: var(--athena-card-bg);
+  backdrop-filter: blur(20px);
+  border-radius: 28px;
+  padding: 38px 36px;
+  box-shadow: var(--athena-card-shadow);
+  border: 1px solid var(--athena-border);
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.athena-login-card:hover {
+  box-shadow: 0 25px 55px -10px rgba(124, 58, 237, 0.18), 0 12px 28px -5px rgba(0, 0, 0, 0.06);
+}
+
+.card-top-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(99, 102, 241, 0.18));
+  border: 1px solid rgba(124, 58, 237, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--athena-purple);
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+}
+
+.card-heading {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #0b1329;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.card-subtext {
+  font-size: 0.88rem;
+  color: var(--athena-text-muted);
+  margin-bottom: 24px;
+}
+
+/* Tabs Toggle (Student / Admin) */
+.role-tabs-container {
+  display: flex;
+  position: relative;
+  background: #f1f5f9;
+  border-radius: 14px;
+  padding: 4px;
+  margin-bottom: 24px;
+  border: 1px solid #e2e8f0;
+}
+
+.role-tab-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 0.88rem;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.role-tab-btn.active {
+  background: #ffffff;
+  color: var(--athena-purple);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.12);
+}
+
+.role-tab-btn i {
+  font-size: 0.95rem;
+}
+
+/* Input Fields */
+.input-group-field {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.input-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.input-label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.input-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.field-icon {
+  position: absolute;
+  left: 16px;
+  color: #94a3b8;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
+
+.modern-text-input {
+  width: 100%;
+  padding: 13px 16px 13px 44px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  color: #0f172a;
+  font-size: 0.92rem;
+  font-family: inherit;
+  font-weight: 500;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.modern-text-input:focus {
+  background: #ffffff;
+  border-color: var(--athena-purple);
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12);
+}
+
+.modern-text-input:focus + .field-icon,
+.modern-text-input:focus ~ .field-icon {
+  color: var(--athena-purple);
+}
+
+.eye-toggle-btn {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  transition: color 0.2s ease;
+}
+
+.eye-toggle-btn:hover {
+  color: var(--athena-purple);
+}
+
+/* Remember me & Forgot Password */
+.card-options-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 14px 0 22px;
+  font-size: 0.82rem;
+}
+
+.remember-me-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #475569;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+}
+
+.custom-checkbox {
+  width: 17px;
+  height: 17px;
+  border-radius: 5px;
+  border: 1.5px solid #cbd5e1;
+  cursor: pointer;
+  accent-color: var(--athena-purple);
+}
+
+.forgot-pw-link {
+  background: none;
+  border: none;
+  color: var(--athena-purple);
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+
+.forgot-pw-link:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+/* Main Action Button */
+.athena-primary-btn {
+  width: 100%;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  font-size: 0.96rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 10px 24px -4px rgba(124, 58, 237, 0.4);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.athena-primary-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -4px rgba(124, 58, 237, 0.5);
+  background: linear-gradient(135deg, #6d28d9 0%, #4f46e5 100%);
+}
+
+.athena-primary-btn:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 6px 16px -2px rgba(124, 58, 237, 0.4);
+}
+
+.athena-primary-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Alternative Google Login */
+.google-auth-btn {
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px 18px;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  color: #334155;
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.google-auth-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* Card Bottom Signup Row */
+.card-bottom-signup {
+  margin-top: 22px;
+  text-align: center;
+  font-size: 0.84rem;
+  color: #64748b;
+}
+
+.signup-link-btn {
+  background: none;
+  border: none;
+  color: var(--athena-purple);
+  font-weight: 700;
+  font-size: 0.84rem;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.signup-link-btn:hover {
+  text-decoration: underline;
+}
+
+/* Error / Notice Banners */
+.login-alert-banner {
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.login-alert-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+}
+
+.login-alert-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #16a34a;
+}
+
+/* BOTTOM FEATURE BAR */
+.athena-bottom-bar {
+  position: relative;
+  z-index: 2;
+  background: #080d1a;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px 28px 0 0;
+  padding: 24px 32px;
+  margin-top: 24px;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.feature-bar-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.feature-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  transition: background 0.2s ease;
+}
+
+.feature-bar-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.feature-icon-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c084fc;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.feature-text-block h4 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 2px;
+}
+
+.feature-text-block p {
+  font-size: 0.74rem;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+/* Step Overlays (Face Verify, Password Reset, etc.) */
+.step-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.step-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.back-btn-pill {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.back-btn-pill:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.webcam-live-card {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid var(--athena-purple);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.2);
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+/* Animations */
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Rules */
+@media (max-width: 1080px) {
+  .athena-login-main {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 24px 20px;
+  }
+  .athena-left-col {
+    text-align: center;
+    align-items: center;
+  }
+  .athena-brand-badge {
+    margin: 0 auto 16px;
+  }
+  .athena-hero-title {
+    font-size: 2.3rem;
+  }
+  .feature-bar-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .floating-rules-card {
+    right: 0;
+  }
+  .floating-shield-badge {
+    left: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .athena-hero-title {
+    font-size: 1.85rem;
+  }
+  .athena-login-card {
+    padding: 26px 20px;
+  }
+  .feature-bar-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .floating-rules-card,
+  .floating-shield-badge {
+    display: none;
+  }
+}
